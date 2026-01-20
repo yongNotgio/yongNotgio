@@ -4,7 +4,7 @@ export const projects = [
     title: 'DiaSight: AI-Powered DR Detection',
     category: ['Web Apps', 'AI/ML'],
     tags: ['React.js', 'Supabase', 'TensorFlow', 'ML'],
-    description: 'AI-powered diabetic retinopathy detection with real-time risk stratification',
+    description: 'Standalone React-Supabase DR detection application with real-time risk stratification',
     awards: [
       '🥇 National Champion - PSC X 2025',
       '🥇 Regional Champion - AI.deas 2025',
@@ -18,7 +18,7 @@ export const projects = [
     title: 'DiaTrack: Diabetes Care System',
     category: ['Web Apps', 'AI/ML', 'Mobile'],
     tags: ['Flutter', 'React', 'Vite', 'AI/ML'],
-    description: 'Comprehensive diabetes monitoring with mobile app and web portals',
+    description: 'Hybrid XAI-enabled diabetes care platform with Flutter mobile app and React-Supabase web portals. Implements ensemble ML, fuzzy logic, and EfficientNetB0 for multi-algorithm AI diagnostics.',
     image: '/project2.png',
   },
   {
@@ -26,7 +26,7 @@ export const projects = [
     title: 'Unblot: Poetry Social Platform',
     category: ['Web Apps'],
     tags: ['React.js', 'Supabase', 'Real-time'],
-    description: 'Full-stack social platform for poets with real-time interactions',
+    description: 'Full-stack React-Supabase social platform with user authentication, poetry posting/sharing, social interactions, feed algorithms, and search functionality.',
     image: '/project3.png',
   },
   {
@@ -34,7 +34,7 @@ export const projects = [
     title: 'Night Walkers App',
     category: ['Mobile'],
     tags: ['Flutter', 'Dart'],
-    description: 'Mobile app built with Flutter for Night Walkers.',
+    description: 'Emergency panic button app that triggers an alarm and sends current location to saved contacts via SMS.',
     image: '/project4.png',
   },
 ];

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { FaGithub } from 'react-icons/fa';
 
 function ProjectCard({ project }) {
   return (
@@ -26,34 +25,16 @@ function ProjectCard({ project }) {
         </div>
       </div>
 
-      {/* Title and actions */}
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold text-textLight group-hover:text-accent transition-colors">
-          {project.title}
-        </h3>
-        <a
-          href={project.githubUrl}
-          className="social-icon text-base"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="View on GitHub"
-        >
-          <FaGithub />
-        </a>
-      </div>
+      {/* Title */}
+      <h3 className="text-lg font-semibold text-textLight group-hover:text-accent transition-colors">
+        {project.title}
+      </h3>
 
       {project.description && (
-        <p className="text-sm text-textMuted mt-2 line-clamp-2">{project.description}</p>
+        <p className="text-sm text-textMuted mt-2 leading-relaxed">
+          {project.description}
+        </p>
       )}
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mt-3">
-        {project.tags.slice(0, 3).map((tag) => (
-          <span key={tag} className="text-xs text-textMuted">
-            #{tag}
-          </span>
-        ))}
-      </div>
 
       {/* Live demo link if available */}
       {project.liveUrl && project.liveUrl !== '#' && (
