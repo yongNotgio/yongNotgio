@@ -1,38 +1,64 @@
-# Gio Anthony Callos | Portfolio
+<!-- Profile README for github.com/yongNotgio -->
 
-React + Vite + Tailwind single-page portfolio with static data, smooth scrolling, and responsive layout.
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&duration=2800&pause=700&center=true&vCenter=true&width=900&lines=Hey%2C+I'm+Gio+Anthony+Callos;I+build+web+%26+mobile+apps." alt="Typing SVG" />
+</p>
 
-## Tech Stack
-- React 18 + Vite
-- Tailwind CSS
-- React Icons
-- Framer Motion (lightweight entrance animations)
+<p align="center">
+  <a href="mailto:gioanthonycallos@gmail.com">
+    <img src="https://img.shields.io/badge/Email-gioanthonycallos%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  <a href="https://github.com/yongNotgio">
+    <img src="https://img.shields.io/badge/GitHub-@yongNotgio-181717?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+</p>
 
-## Getting Started
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Run the dev server:
-   ```bash
-   npm run dev
-   ```
-3. Build for production:
-   ```bash
-   npm run build
-   ```
-4. Preview the production build:
-   ```bash
-   npm run preview
-   ```
+<p align="center">
+  <a href="https://facebook.com/yongNotGio">
+    <img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" />
+  </a>
+  <a href="https://instagram.com/_stillgio">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/yongcallos">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+</p>
 
-## Project Structure
-- src/components: UI sections (Navbar, Hero, About, Projects, Skills, Awards, Footer)
-- src/data/projectsData.js: Hardcoded projects for filtering
-- src/App.jsx: Page layout and section composition
+---
 
-## Notes
-- Color scheme: Deep Blue (#1e3a8a), Gold accent (#fbbf24), white background
-- Typography: Inter/Poppins via Google Fonts (see src/index.css)
-- Replace resume and social links with live URLs before launch
-- Images are optional; cards use gradient placeholders if no images are provided
+### 👨‍💻 About
+
+- **Gio Anthony Callos** (`@yongNotgio`) – full‑stack dev.
+- I like shipping small, useful things with clean code and simple UX.
+- Into React, Flutter, Supabase/Firebase, and AI/ML‑powered apps.
+
+---
+
+### 🧰 Stack
+
+<p>
+  <!-- Languages -->
+  <img src="https://img.shields.io/badge/JS%2FTS-F7DF1E?style=flat-square&logo=javascript&logoColor=000" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=fff" />
+  <img src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=fff" />
+  <!-- Web/Mobile -->
+  <img src="https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61dafb" />
+  <img src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=fff" />
+  <!-- Backend/Data -->
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=000" />
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=000" />
+  <!-- Tools -->
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=fff" />
+  <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=fff" />
+</p>
+
+---
+
+### 🤝 Links
+
+ 
+- **LinkedIn**: [`in/yongcallos`](https://www.linkedin.com/in/yongcallos)  
+- **Instagram**: [`_stillgio`](https://instagram.com/_stillgio)  
+- **Facebook**: [`yongNotGio`](https://facebook.com/yongNotGio)  
+- **Email**: `gioanthonycallos@gmail.com`
