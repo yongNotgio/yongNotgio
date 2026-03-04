@@ -27,18 +27,19 @@
 
 ---
 
-### 👨‍💻 About
+### About
 
 - **Gio Anthony Callos** (`@yongNotgio`) – full‑stack dev.
 - I like shipping small, useful things with clean code and simple UX.
 - Into React, Flutter, Supabase/Firebase, and AI/ML‑powered apps.
 
 ---
+### Github Movements
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=yongNotgio&theme=dark&stroke=FF69B4&sideNums=F6C8CC&fire=DA62B0&currStreakLabel=E6D5E0&&currStreakNum=E6D5E0&ring=DA62B0)
 
 ---
 
-### 🧰 Stack
+### Stack
 
 <p>
   <!-- Languages -->
@@ -58,7 +59,7 @@
 
 ---
 
-### 🤝 Links
+### Links
 
  
 - **LinkedIn**: [`in/yongcallos`](https://www.linkedin.com/in/yongcallos)  
