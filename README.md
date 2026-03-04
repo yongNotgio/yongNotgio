@@ -34,6 +34,9 @@
 - Into React, Flutter, Supabase/Firebase, and AI/ML‑powered apps.
 
 ---
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=yongNotgio&theme=dark&stroke=FF69B4&sideNums=F6C8CC&fire=DA62B0&currStreakLabel=E6D5E0&&currStreakNum=E6D5E0&ring=DA62B0)
+
+---
 
 ### 🧰 Stack
 
