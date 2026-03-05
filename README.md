@@ -42,6 +42,13 @@
 ### Stack
 
 <p align="left">
+  <img src="https://skillicons.dev/icons?i=js"width="60" height="60" alt="JavaScript"/>
+  <img src="https://skillicons.dev/icons?i=ts"width="60" height="60" alt="TypeScript"/>
+  <img src="https://skillicons.dev/icons?i=react"width="60" height="60" alt="React"/>
+  <img src="https://skillicons.dev/icons?i=python"width="60" height="60" alt="Python"/>
+  <img src="https://skillicons.dev/icons?i=flutter"width="60" height="60" alt="Flutter"/>
+  <img src="https://skillicons.dev/icons?i=git"width="60" height="60" alt="Git"/>
+  <img src="https://skillicons.dev/icons?i=supabase"width="60" height="60" alt="Supabase"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="60" height="60"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original-wordmark.svg" width="60" height="60"/>   
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg" width="60" height="60"/>
