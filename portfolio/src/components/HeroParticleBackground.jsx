@@ -70,7 +70,7 @@ function HeroParticleBackground() {
             },
             move: {
               enable: true,
-              speed: 6,
+              speed: 1.8,
               direction: 'top-left',
               random: false,
               straight: false,
