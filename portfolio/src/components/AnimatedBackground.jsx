@@ -22,42 +22,51 @@ function AnimatedBackground() {
           enable: false,
         },
         fpsLimit: 60,
+        background: {
+          color: 'transparent',
+        },
         particles: {
           number: {
-            value: 66,
+            value: 90,
             density: {
               enable: true,
-              area: 6666,
+              area: 1400,
             },
           },
           color: {
-            value: '#98ac95',
+            value: '#d8e8ff',
           },
           shape: {
             type: 'circle',
             stroke: {
               width: 0,
-              color: '#98ac95',
+              color: '#d8e8ff',
             },
           },
           opacity: {
-            value: 0.66,
+            value: { min: 0.25, max: 0.8 },
+            animation: {
+              enable: true,
+              speed: 0.25,
+              minimumValue: 0.2,
+              sync: false,
+            },
           },
           size: {
-            value: { min: 0.6, max: 6 },
+            value: { min: 0.8, max: 3.2 },
           },
           links: {
             enable: true,
-            distance: 666,
-            color: '#98ac95',
-            opacity: 0.6,
-            width: 0.6,
+            distance: 170,
+            color: '#9bb8e8',
+            opacity: 0.32,
+            width: 1,
           },
           move: {
             enable: true,
-            speed: 6,
-            direction: 'top-left',
-            random: false,
+            speed: 0.35,
+            direction: 'none',
+            random: true,
             straight: false,
             outModes: {
               default: 'out',
@@ -78,9 +87,9 @@ function AnimatedBackground() {
           },
           modes: {
             grab: {
-              distance: 666,
+              distance: 220,
               links: {
-                opacity: 0.6,
+                opacity: 0.55,
               },
             },
           },
