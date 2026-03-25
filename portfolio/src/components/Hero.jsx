@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import AnimatedBackground from './AnimatedBackground';
 
 const socials = [
   { icon: <FaGithub />, label: 'GitHub', href: 'https://github.com/yongNotgio' },
@@ -22,7 +21,6 @@ function Hero() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center relative overflow-hidden pt-16 md:pt-0">
-      <AnimatedBackground />
       <div className="section-container grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center py-12 sm:py-16 md:py-24 relative z-10">
         {/* Left - Photo with social icons */}
         <motion.div

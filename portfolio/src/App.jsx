@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import Navbar from './components/Navbar.jsx';
+import AnimatedBackground from './components/AnimatedBackground.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Projects from './components/Projects.jsx';
@@ -18,20 +19,23 @@ function App() {
   }, [activeCategory]);
 
   return (
-    <div className="bg-dark min-h-screen overflow-x-hidden">
-      <Navbar />
-      <main className="overflow-x-hidden">
-        <Hero />
-        <About />
-        <Projects
-          categories={categories}
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-          projects={filteredProjects}
-        />
-        <Awards />
-      </main>
-      <Footer />
+    <div className="bg-dark min-h-screen overflow-x-hidden relative">
+      <AnimatedBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <main className="overflow-x-hidden">
+          <Hero />
+          <About />
+          <Projects
+            categories={categories}
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+            projects={filteredProjects}
+          />
+          <Awards />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
