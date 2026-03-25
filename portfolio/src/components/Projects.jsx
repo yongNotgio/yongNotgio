@@ -1,6 +1,15 @@
 import { motion } from 'framer-motion';
 
 function ProjectCard({ project }) {
+  const handleImageError = (event) => {
+    const img = event.currentTarget;
+    if (project.githubAvatar && img.src !== project.githubAvatar) {
+      img.src = project.githubAvatar;
+      return;
+    }
+    img.src = '/placeholder-project.jpg';
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -10,11 +19,19 @@ function ProjectCard({ project }) {
       className="group"
     >
       {/* Image with overlay badges */}
-      <div className="project-card-image mb-4">
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="project-card-image mb-4 block"
+        aria-label={`Open ${project.title} repository`}
+      >
         <img
           src={project.image || '/placeholder-project.jpg'}
           alt={project.title}
           className="project-image"
+          loading="lazy"
+          onError={handleImageError}
         />
         <div className="project-card-overlay">
           {project.category.slice(0, 2).map((cat) => (
@@ -23,7 +40,7 @@ function ProjectCard({ project }) {
             </span>
           ))}
         </div>
-      </div>
+      </a>
 
       {/* Title */}
       <h3 className="text-lg font-semibold text-textLight group-hover:text-accent transition-colors">
