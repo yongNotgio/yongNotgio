@@ -6,17 +6,42 @@ import About from './components/About.jsx';
 import Projects from './components/Projects.jsx';
 import Awards from './components/Awards.jsx';
 import Footer from './components/Footer.jsx';
-import { projects } from './data/projectsData.js';
+import { projects } from './data/projectsData.auto.js';
 
-const categories = ['All', 'Web Apps', 'Mobile'];
+const pinnedRepoNames = new Set([
+  'unblot',
+  'logsync',
+  'night_walkers_app',
+  'wvsu-lf',
+  'diatrack',
+  'diatrack1',
+]);
+
+function extractRepoName(githubUrl = '') {
+  const parts = githubUrl.split('/').filter(Boolean);
+  return parts.length > 0 ? parts[parts.length - 1].toLowerCase() : '';
+}
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('All');
 
+  const pinnedProjects = useMemo(
+    () => projects.filter((project) => pinnedRepoNames.has(extractRepoName(project.githubUrl))),
+    []
+  );
+
+  const categories = useMemo(() => {
+    const uniqueCategories = new Set();
+    pinnedProjects.forEach((project) => {
+      (project.category || []).forEach((category) => uniqueCategories.add(category));
+    });
+    return ['All', ...Array.from(uniqueCategories)];
+  }, [pinnedProjects]);
+
   const filteredProjects = useMemo(() => {
-    if (activeCategory === 'All') return projects;
-    return projects.filter((project) => project.category.includes(activeCategory));
-  }, [activeCategory]);
+    if (activeCategory === 'All') return pinnedProjects;
+    return pinnedProjects.filter((project) => project.category.includes(activeCategory));
+  }, [activeCategory, pinnedProjects]);
 
   return (
     <div className="bg-dark min-h-screen overflow-x-hidden relative isolate">

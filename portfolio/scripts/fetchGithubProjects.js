@@ -31,22 +31,61 @@ async function fetchRepos() {
 }
 
 function guessCategory(name, desc, language) {
-  const text = `${name} ${desc || ''} ${language || ''}`.toLowerCase();
-  if (/(flutter|android|ios|mobile)/.test(text)) return ['Mobile', 'Web Apps'];
-  if (/(tensorflow|ml|machine|ai|pytorch|model|keras)/.test(text)) return ['AI/ML', 'Web Apps'];
-  return ['Web Apps'];
+  const text = `${name} ${desc || ''}`.toLowerCase();
+  const normalizedLanguage = (language || '').toLowerCase();
+
+  const mobileLanguages = new Set(['dart', 'kotlin', 'swift', 'objective-c']);
+  const webLanguages = new Set([
+    'javascript',
+    'typescript',
+    'html',
+    'css',
+    'php',
+    'vue',
+    'svelte',
+    'tsx',
+    'jsx',
+  ]);
+
+  let platformCategory = 'Web App';
+  if (mobileLanguages.has(normalizedLanguage)) {
+    platformCategory = 'Mobile';
+  } else if (webLanguages.has(normalizedLanguage)) {
+    platformCategory = 'Web App';
+  } else if (/(flutter|android|ios|mobile)/.test(text)) {
+    platformCategory = 'Mobile';
+  }
+
+  const categories = [platformCategory];
+  if (/(tensorflow|ml|machine learning|ai\b|pytorch|model|keras|opencv|xai)/.test(text)) {
+    categories.push('AI/ML');
+  }
+
+  return categories;
 }
 
 function toTitle(str) {
   return str.replace(/[-_]/g, ' ').replace(/\b\w/g, (s) => s.toUpperCase());
 }
 
+function buildProjectImage(repo) {
+  if (repo?.owner?.login && repo?.name) {
+    const tokenPart = repo?.id || 1;
+    return `https://opengraph.githubassets.com/${tokenPart}/${repo.owner.login}/${repo.name}`;
+  }
+  return repo?.owner?.avatar_url || '/placeholder-project.jpg';
+}
+
 (async () => {
   try {
     const repos = await fetchRepos();
     const filtered = repos
-      .filter((r) => !r.fork && !r.archived)
+      .filter((r) => !r.archived)
       .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+    if (filtered.length === 0) {
+      throw new Error('No repositories were found from GitHub API results.');
+    }
 
     const projects = filtered.map((r, i) => {
       const title = toTitle(r.name);
@@ -61,7 +100,8 @@ function toTitle(str) {
         awards: [],
         liveUrl: r.homepage || '#',
         githubUrl: r.html_url,
-        image: '/placeholder-project.jpg',
+        image: buildProjectImage(r),
+        githubAvatar: r?.owner?.avatar_url || '',
       };
     });
 
@@ -69,7 +109,7 @@ function toTitle(str) {
     const fileContent = `export const projects = ${JSON.stringify(projects, null, 2)};\n`;
     await fs.writeFile(outPath, fileContent, 'utf8');
     console.log(`Wrote ${projects.length} projects to ${outPath}`);
-    console.log('Open src/data/projectsData.auto.js to review and merge into your main data file.');
+    console.log('Source: GitHub repositories (including forks).');
   } catch (err) {
     console.error('Error:', err.message);
     process.exit(1);
