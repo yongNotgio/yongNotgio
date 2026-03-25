@@ -8,27 +8,28 @@ export const projects = [
     "tags": [
       "JavaScript"
     ],
-    "description": "The Portal",
+    "description": "This repository contains the high-density administrative dashboard designed for clinical decision support and case-similarity retrieval. It enables healthcare providers to monitor patient cohorts and visualize complex medical trends through a responsive React-based interface.",
     "awards": [],
-    "liveUrl": "#",
+    "liveUrl": "https://diatrack-cict.vercel.app/",
     "githubUrl": "https://github.com/yongNotgio/Diatrack",
     "image": "https://opengraph.githubassets.com/1056681729/yongNotgio/Diatrack",
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
     "id": 2,
-    "title": "WVSU LF",
+    "title": "Diatrack1",
     "category": [
-      "Web App"
+      "Mobile",
+      "AI/ML"
     ],
     "tags": [
-      "TypeScript"
+      "Dart"
     ],
-    "description": "WVSULF is a peer-to-peer lost and found for West Visayas State University. It replaces the messy \"Freedom Walls\" with a structured, gamified system that uses Tailwind for a modern, mobile-first interface.",
+    "description": "This repository houses the patient-facing application focused on high-accessibility health logging and real-time data synchronization. It provides a streamlined mobile experience for users to track blood glucose, medication, and wound healing tracker on the go.",
     "awards": [],
     "liveUrl": "#",
-    "githubUrl": "https://github.com/yongNotgio/WVSU-LF",
-    "image": "https://opengraph.githubassets.com/1179480208/yongNotgio/WVSU-LF",
+    "githubUrl": "https://github.com/yongNotgio/diatrack1",
+    "image": "https://opengraph.githubassets.com/959810737/yongNotgio/diatrack1",
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
@@ -49,6 +50,22 @@ export const projects = [
   },
   {
     "id": 4,
+    "title": "WVSU LF",
+    "category": [
+      "Web App"
+    ],
+    "tags": [
+      "TypeScript"
+    ],
+    "description": "WVSULF is a peer-to-peer lost and found for West Visayas State University. It replaces the messy \"Freedom Walls\" with a structured, gamified system that uses Tailwind for a modern, mobile-first interface.",
+    "awards": [],
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/yongNotgio/WVSU-LF",
+    "image": "https://opengraph.githubassets.com/1179480208/yongNotgio/WVSU-LF",
+    "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
+  },
+  {
+    "id": 5,
     "title": "Unblot",
     "category": [
       "Web App"
@@ -64,7 +81,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 5,
+    "id": 6,
     "title": "Portfolio",
     "category": [
       "Web App"
@@ -80,7 +97,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 6,
+    "id": 7,
     "title": "Opencv",
     "category": [
       "Web App",
@@ -97,7 +114,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 7,
+    "id": 8,
     "title": "Night Walkers App",
     "category": [
       "Mobile"
@@ -113,7 +130,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 8,
+    "id": 9,
     "title": "LogSync",
     "category": [
       "Web App"
@@ -129,7 +146,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 9,
+    "id": 10,
     "title": "Diatrack Migration",
     "category": [
       "Web App"
@@ -145,7 +162,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 10,
+    "id": 11,
     "title": "Yakap",
     "category": [
       "Web App"
@@ -161,7 +178,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 11,
+    "id": 12,
     "title": "Chatbutt",
     "category": [
       "Web App"
@@ -177,7 +194,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 12,
+    "id": 13,
     "title": "Kopikopi No Mi",
     "category": [
       "Web App"
@@ -193,7 +210,7 @@ export const projects = [
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
-    "id": 13,
+    "id": 14,
     "title": "Route17",
     "category": [
       "Web App"
@@ -206,22 +223,6 @@ export const projects = [
     "liveUrl": "#",
     "githubUrl": "https://github.com/yongNotgio/Route17",
     "image": "https://opengraph.githubassets.com/1160769779/yongNotgio/Route17",
-    "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
-  },
-  {
-    "id": 14,
-    "title": "Diatrack1",
-    "category": [
-      "Mobile"
-    ],
-    "tags": [
-      "Dart"
-    ],
-    "description": "The Patient Portal",
-    "awards": [],
-    "liveUrl": "#",
-    "githubUrl": "https://github.com/yongNotgio/diatrack1",
-    "image": "https://opengraph.githubassets.com/959810737/yongNotgio/diatrack1",
     "githubAvatar": "https://avatars.githubusercontent.com/u/124260403?v=4"
   },
   {
