@@ -100,7 +100,8 @@ function AnimatedBackground() {
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: 0,
+        zIndex: -10,
+        pointerEvents: 'none',
       }}
     />
   );

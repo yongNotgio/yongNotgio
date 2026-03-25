@@ -19,7 +19,7 @@ function App() {
   }, [activeCategory]);
 
   return (
-    <div className="bg-dark min-h-screen overflow-x-hidden relative">
+    <div className="bg-dark min-h-screen overflow-x-hidden relative isolate">
       <AnimatedBackground />
       <div className="relative z-10">
         <Navbar />
