@@ -16,6 +16,14 @@ if (!username) {
 
 const token = process.env.GITHUB_TOKEN;
 const apiUrl = `https://api.github.com/users/${username}/repos?per_page=100&type=owner`;
+const FALLBACK_PINNED_REPOS = new Set([
+  'unblot',
+  'logsync',
+  'night_walkers_app',
+  'wvsu-lf',
+  'diatrack',
+  'diatrack1',
+]);
 
 async function fetchRepos() {
   const headers = {
@@ -28,6 +36,79 @@ async function fetchRepos() {
     throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
   }
   return res.json();
+}
+
+async function fetchPinnedRepoNamesWithGraphQL() {
+  if (!token) return null;
+
+  const query = `
+    query($login: String!) {
+      user(login: $login) {
+        pinnedItems(first: 6, types: REPOSITORY) {
+          nodes {
+            ... on Repository {
+              name
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const res = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Accept: 'application/vnd.github+json',
+    },
+    body: JSON.stringify({ query, variables: { login: username } }),
+  });
+
+  if (!res.ok) return null;
+
+  const json = await res.json();
+  const nodes = json?.data?.user?.pinnedItems?.nodes;
+  if (!Array.isArray(nodes)) return null;
+
+  const names = nodes.map((n) => (n?.name || '').toLowerCase()).filter(Boolean);
+  return names.length > 0 ? new Set(names) : null;
+}
+
+async function fetchPinnedRepoNamesFromProfilePage() {
+  const res = await fetch(`https://github.com/${username}`, {
+    headers: {
+      Accept: 'text/html',
+      'User-Agent': 'portfolio-fetch-script',
+    },
+  });
+
+  if (!res.ok) return null;
+
+  const html = await res.text();
+  const sectionMatch = html.match(/id="js-pinned-items-reorder-container"[\s\S]*?<\/ol>/i);
+  if (!sectionMatch) return null;
+
+  const pinnedSection = sectionMatch[0];
+  const repoLinkRegex = new RegExp(`href="/${username}/([^"/]+)"`, 'gi');
+  const names = new Set();
+  let match;
+
+  while ((match = repoLinkRegex.exec(pinnedSection)) !== null) {
+    if (match[1]) names.add(match[1].toLowerCase());
+  }
+
+  return names.size > 0 ? names : null;
+}
+
+async function fetchPinnedRepoNames() {
+  const fromGraphQL = await fetchPinnedRepoNamesWithGraphQL();
+  if (fromGraphQL && fromGraphQL.size > 0) return fromGraphQL;
+
+  const fromProfilePage = await fetchPinnedRepoNamesFromProfilePage();
+  if (fromProfilePage && fromProfilePage.size > 0) return fromProfilePage;
+
+  return FALLBACK_PINNED_REPOS;
 }
 
 function guessCategory(name, desc, language) {
@@ -79,8 +160,11 @@ function buildProjectImage(repo) {
 (async () => {
   try {
     const repos = await fetchRepos();
+    const pinnedRepoNames = await fetchPinnedRepoNames();
+
     const filtered = repos
       .filter((r) => !r.archived)
+      .filter((r) => pinnedRepoNames.has((r?.name || '').toLowerCase()))
       .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
     if (filtered.length === 0) {
@@ -109,7 +193,7 @@ function buildProjectImage(repo) {
     const fileContent = `export const projects = ${JSON.stringify(projects, null, 2)};\n`;
     await fs.writeFile(outPath, fileContent, 'utf8');
     console.log(`Wrote ${projects.length} projects to ${outPath}`);
-    console.log('Source: GitHub repositories (including forks).');
+    console.log(`Source: GitHub pinned repositories only (${username}).`);
   } catch (err) {
     console.error('Error:', err.message);
     process.exit(1);
