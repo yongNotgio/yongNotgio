@@ -1,43 +1,79 @@
 import HeroParticleBackground from './HeroParticleBackground.jsx';
-import { motion } from 'framer-motion';
-import { staggerContainer, textVariant, fadeInUp, slideIn } from '../utils/motion.js';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { staggerContainer, textVariant, fadeInUp, slideIn, zoomIn } from '../utils/motion.js';
 
 function Hero() {
+  const { scrollY } = useScroll();
+  const yText = useTransform(scrollY, [0, 500], [0, 250]);
+  const yBg = useTransform(scrollY, [0, 500], [0, -100]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
   return (
-    <section className="hero" id="top">
-      <HeroParticleBackground />
+    <section className="hero" id="top" style={{ perspective: '1000px', overflow: 'hidden' }}>
+      <motion.div style={{ y: yBg, width: '100%', height: '100%', position: 'absolute' }}>
+        <HeroParticleBackground />
+      </motion.div>
 
       <motion.div 
-        variants={staggerContainer(0.2, 0.1)}
+        variants={staggerContainer(0.25, 0.2)}
         initial="hidden"
         animate="show"
+        style={{ y: yText, opacity, transformStyle: 'preserve-3d' }}
         className="hero-content"
       >
-        <motion.h1 variants={textVariant(0.1)}>
+        <motion.h1 
+          variants={zoomIn(0.1, 1.5)}
+          style={{ 
+            display: 'inline-block',
+            transformOrigin: 'left center'
+          }}
+        >
           Full-stack
           <br />
-          <motion.span variants={textVariant(0.3)} style={{ display: 'inline-block' }} className="stroke">+ Mobile</motion.span>
+          <motion.span 
+            variants={textVariant(0.4)} 
+            style={{ display: 'inline-block' }} 
+            className="stroke"
+          >
+            + Mobile
+          </motion.span>
           <br />
-          <motion.span variants={textVariant(0.5)} style={{ display: 'inline-block' }} className="lime">Developer</motion.span>
+          <motion.span 
+            variants={textVariant(0.7)} 
+            style={{ display: 'inline-block', textShadow: '0 0 40px rgba(200,241,53,0.5)' }} 
+            className="lime"
+          >
+            Developer
+          </motion.span>
         </motion.h1>
 
-        <motion.p variants={fadeInUp} className="hero-sub">
+        <motion.p variants={fadeInUp} className="hero-sub" style={{ backdropFilter: 'blur(10px)', padding: '1rem', borderRadius: '12px', background: 'rgba(26,26,26,0.5)' }}>
           I build fast, scalable web and mobile products, from pixel-perfect React UIs to
           robust Node and Python backends and cross-platform Flutter apps.
         </motion.p>
 
-        <motion.div variants={fadeInUp} className="hero-btns">
-          <a href="#work" className="btn-primary">
+        <motion.div variants={zoomIn(1, 1)} className="hero-btns">
+          <motion.a 
+            href="#work" 
+            className="btn-primary"
+            whileHover={{ scale: 1.15, rotate: -2, boxShadow: '0 0 30px #c8f135' }}
+            whileTap={{ scale: 0.9 }}
+          >
             View my work ↓
-          </a>
-          <a href="#contact" className="btn-ghost">
+          </motion.a>
+          <motion.a 
+            href="#contact" 
+            className="btn-ghost"
+            whileHover={{ scale: 1.15, rotate: 2, background: 'rgba(255,255,255,0.1)' }}
+            whileTap={{ scale: 0.9 }}
+          >
             Let&apos;s talk
-          </a>
+          </motion.a>
         </motion.div>
       </motion.div>
 
       <motion.div 
-        variants={slideIn("up", "spring", 0.6, 1.5)}
+        variants={slideIn("right", "spring", 0.8, 2)}
         initial="hidden"
         animate="show"
         className="code-block"

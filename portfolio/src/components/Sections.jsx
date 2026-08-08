@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { staggerContainer, fadeInUp, hoverCard, textVariant } from '../utils/motion.js';
+import { staggerContainer, fadeInUp, hoverCard, textVariant, zoomIn, slideIn } from '../utils/motion.js';
 import {
   FaArrowRight,
   FaEnvelope,
@@ -206,7 +206,7 @@ export function Projects({ projectsData = [] }) {
       </motion.div>
 
       <motion.div 
-        variants={staggerContainer(0.15, 0.2)} 
+        variants={staggerContainer(0.2, 0.2)} 
         initial="hidden" 
         whileInView="show" 
         viewport={{ once: true, margin: "-50px" }}
@@ -214,10 +214,10 @@ export function Projects({ projectsData = [] }) {
       >
         {displayProjects.map((p, i) => (
           <motion.article
-            variants={fadeInUp}
+            variants={zoomIn(i * 0.15, 1.2)}
             custom={hoverCard.hover}
-            style={{ y: 0 }}
-            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 15 } }}
+            style={{ y: 0, transformStyle: "preserve-3d" }}
+            whileHover={hoverCard.hover}
             key={p.id || p.githubUrl || p.title}
             className="project-card"
           >
@@ -303,7 +303,7 @@ export function Skills() {
       </motion.div>
 
       <motion.div 
-        variants={staggerContainer(0.1, 0.1)} 
+        variants={staggerContainer(0.15, 0.1)} 
         initial="hidden" 
         whileInView="show" 
         viewport={{ once: true, margin: "-50px" }}
@@ -311,8 +311,8 @@ export function Skills() {
       >
         {SKILL_GROUPS.map((group, gi) => (
           <motion.article 
-            variants={fadeInUp}
-            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 15 } }}
+            variants={slideIn(gi % 2 === 0 ? "left" : "right", "spring", 0.1, 1.5)}
+            whileHover={hoverCard.hover}
             key={group.label} 
             className="skill-card"
           >
@@ -350,7 +350,7 @@ export function Achievements() {
       </motion.div>
 
       <motion.div 
-        variants={staggerContainer(0.15, 0.1)} 
+        variants={staggerContainer(0.2, 0.1)} 
         initial="hidden" 
         whileInView="show" 
         viewport={{ once: true, margin: "-50px" }}
@@ -358,8 +358,8 @@ export function Achievements() {
       >
         {ACHIEVEMENTS.map((a, i) => (
           <motion.article 
-            variants={fadeInUp}
-            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 15 } }}
+            variants={zoomIn(i * 0.1, 1)}
+            whileHover={hoverCard.hover}
             key={a.title} 
             className="ach-card"
           >
