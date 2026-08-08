@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { staggerContainer, fadeInUp, hoverCard, textVariant } from '../utils/motion.js';
 import {
   FaArrowRight,
   FaEnvelope,
@@ -9,13 +11,19 @@ import {
   FaRocket,
   FaTrophy,
   FaAward,
+  FaCode,
+  FaMobileAlt,
+  FaServer,
+  FaDatabase,
+  FaBrain,
+  FaTools
 } from 'react-icons/fa';
 
 const STATS = [
   { num: '3+', label: 'Years experience' },
   { num: '0', label: 'Featured projects' },
-  { num: '6', label: 'Major recognitions' },
-  { num: '4th', label: 'Year standing' },
+  { num: '7', label: 'Major recognitions' },
+  { num: 'BS', label: 'Info Systems' },
 ];
 
 const PROJECTS = [
@@ -66,37 +74,43 @@ function getProjectLabel(project) {
 const SKILL_GROUPS = [
   {
     label: 'Web and Frontend',
-    className: 'sk-lime',
-    items: ['JavaScript', 'TypeScript', 'React', 'Vite', 'Tailwind CSS', 'HTML5', 'JSON'],
+    Icon: FaCode,
+    iconClass: 'sk-icon-lime',
+    items: ['TypeScript', 'React', 'TanStack Start', 'Astro', 'Vite', 'Tailwind CSS', 'JavaScript'],
   },
   {
     label: 'Mobile',
-    className: 'sk-coral',
+    Icon: FaMobileAlt,
+    iconClass: 'sk-icon-coral',
     items: ['Flutter', 'Dart'],
   },
   {
-    label: 'Backend and Services',
-    className: 'sk-cobalt',
-    items: ['PHP', 'Supabase', 'Firebase', 'Convex'],
-  },
-  {
-    label: 'Databases',
-    className: 'sk-coral',
-    items: ['MySQL', 'PostgreSQL'],
+    label: 'Backend and Databases',
+    Icon: FaDatabase,
+    iconClass: 'sk-icon-cobalt',
+    items: ['Node.js', 'PostgreSQL', 'Convex', 'Supabase', 'PHP', 'MySQL', 'Firebase'],
   },
   {
     label: 'AI, ML, and Data Science',
-    className: 'sk-lime',
+    Icon: FaBrain,
+    iconClass: 'sk-icon-lime',
     items: ['Python', 'TensorFlow', 'OpenCV', 'Scikit-learn', 'Jupyter', 'R', 'RStudio'],
   },
   {
     label: 'Tools and Infra',
-    className: 'sk-gray',
-    items: ['Git', 'VS Code', 'Kubernetes', 'C++'],
+    Icon: FaTools,
+    iconClass: 'sk-icon-gray',
+    items: ['Git', 'GitHub', 'VS Code', 'Docker', 'Kubernetes'],
   },
 ];
 
 const ACHIEVEMENTS = [
+  {
+    Icon: FaTrophy,
+    title: 'Champion',
+    desc: 'DOST National AI Fest 2026, Open Category.',
+    badge: 'AUG 2026',
+  },
   {
     Icon: FaTrophy,
     title: 'National Champion, Most Disruptive Idea, and Best Business Model',
@@ -159,14 +173,20 @@ export function StatsBand({ projectCount = 0 }) {
   );
 
   return (
-    <div className="stats-band">
+    <motion.div 
+      variants={staggerContainer(0.2, 0.5)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-50px" }}
+      className="stats-band"
+    >
       {computedStats.map((s) => (
-        <div key={s.label} className="stat-item">
+        <motion.div variants={textVariant(0)} key={s.label} className="stat-item">
           <div className="stat-num">{s.num}</div>
           <div className="stat-label">{s.label}</div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 
@@ -175,16 +195,31 @@ export function Projects({ projectsData = [] }) {
 
   return (
     <section id="work" className="section section-alt">
-      <div className="reveal">
+      <motion.div 
+        variants={fadeInUp} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+      >
         <SectionLabel>// selected work</SectionLabel>
         <SectionTitle>Things I&apos;ve built</SectionTitle>
-      </div>
+      </motion.div>
 
-      <div className="projects-grid">
+      <motion.div 
+        variants={staggerContainer(0.15, 0.2)} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+        className="projects-grid"
+      >
         {displayProjects.map((p, i) => (
-          <article
+          <motion.article
+            variants={fadeInUp}
+            custom={hoverCard.hover}
+            style={{ y: 0 }}
+            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 15 } }}
             key={p.id || p.githubUrl || p.title}
-            className={`project-card reveal d${(i % 4) + 1}`}
+            className="project-card"
           >
             <div
               className="card-thumb"
@@ -247,60 +282,56 @@ export function Projects({ projectsData = [] }) {
                 ) : null}
               </div>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
 
 export function Skills() {
-  const bars = [
-    { label: 'Frontend', pct: 95, color: '#c8f135' },
-    { label: 'Backend', pct: 88, color: '#ff5c3a' },
-    { label: 'Mobile', pct: 90, color: '#6b7fff' },
-    { label: 'DevOps', pct: 74, color: 'var(--fg-faint)' },
-    { label: 'UI / UX', pct: 80, color: '#c8f135' },
-    { label: 'Architecture', pct: 85, color: '#ff5c3a' },
-  ];
-
   return (
     <section id="skills" className="section">
-      <div className="reveal">
+      <motion.div 
+        variants={fadeInUp} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+      >
         <SectionLabel>// expertise</SectionLabel>
         <SectionTitle>My stack</SectionTitle>
-      </div>
+      </motion.div>
 
-      <div className="skills-layout">
-        <div>
-          {SKILL_GROUPS.map((group, gi) => (
-            <div key={group.label} className={`skill-group reveal d${(gi % 4) + 1}`}>
-              <div className="skill-group-label">{group.label}</div>
-              <div className="skill-tags">
-                {group.items.map((skill) => (
-                  <span key={skill} className={`skill-tag ${group.className}`}>
-                    {skill}
-                  </span>
-                ))}
+      <motion.div 
+        variants={staggerContainer(0.1, 0.1)} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+        className="skills-grid"
+      >
+        {SKILL_GROUPS.map((group, gi) => (
+          <motion.article 
+            variants={fadeInUp}
+            whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 15 } }}
+            key={group.label} 
+            className="skill-card"
+          >
+            <div className="skill-card-header">
+              <div className={`skill-card-icon ${group.iconClass}`}>
+                <group.Icon aria-hidden="true" />
               </div>
+              <h3>{group.label}</h3>
             </div>
-          ))}
-        </div>
-
-        <div className="reveal d3">
-          {bars.map((bar) => (
-            <div key={bar.label} className="bar-row">
-              <div className="bar-meta">
-                <span className="bar-label">{bar.label}</span>
-                <span className="bar-pct">{bar.pct}%</span>
-              </div>
-              <div className="bar-track">
-                <div className="bar-fill" style={{ width: `${bar.pct}%`, background: bar.color }} />
-              </div>
+            <div className="skill-tags">
+              {group.items.map((skill) => (
+                <span key={skill} className="skill-tag">
+                  {skill}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </motion.article>
+        ))}
+      </motion.div>
     </section>
   );
 }
@@ -308,23 +339,39 @@ export function Skills() {
 export function Achievements() {
   return (
     <section id="wins" className="section section-alt">
-      <div className="reveal">
+      <motion.div 
+        variants={fadeInUp} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+      >
         <SectionLabel>// milestones</SectionLabel>
         <SectionTitle>Wins and recognition</SectionTitle>
-      </div>
+      </motion.div>
 
-      <div className="ach-grid">
+      <motion.div 
+        variants={staggerContainer(0.15, 0.1)} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+        className="ach-grid"
+      >
         {ACHIEVEMENTS.map((a, i) => (
-          <article key={a.title} className={`ach-card reveal d${(i % 3) + 1}`}>
+          <motion.article 
+            variants={fadeInUp}
+            whileHover={{ y: -8, scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 15 } }}
+            key={a.title} 
+            className="ach-card"
+          >
             <div className="ach-icon">
               <a.Icon aria-hidden="true" />
             </div>
             <h3>{a.title}</h3>
             <p>{a.desc}</p>
             <span className="ach-badge">{a.badge}</span>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -332,61 +379,50 @@ export function Achievements() {
 export function Contact() {
   return (
     <section id="contact" className="section">
-      <div className="reveal">
+      <motion.div 
+        variants={fadeInUp} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+      >
         <SectionLabel>// get in touch</SectionLabel>
         <SectionTitle>Let&apos;s build something</SectionTitle>
-      </div>
+      </motion.div>
 
-      <div className="contact-grid">
-        <div className="reveal">
-          <p>
-            I am a BS Information Systems student majoring in Business Applications Development,
-            focused on building AI-enabled web and mobile solutions that solve real health and
-            social impact problems.
-          </p>
-          <div className="social-links">
-            {SOCIAL.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                <span aria-hidden="true">
-                  <s.Icon />
-                </span>
-                {s.label}
-                <span className="arr" aria-hidden="true">
-                  <FaArrowRight />
-                </span>
-              </a>
-            ))}
-          </div>
+      <motion.div 
+        variants={fadeInUp} 
+        initial="hidden" 
+        whileInView="show" 
+        viewport={{ once: true, margin: "-50px" }}
+        className="contact-content"
+      >
+        <p>
+          I am a Full-stack Developer with a degree in Information Systems,
+          focused on building AI-enabled web and mobile solutions that solve real health and
+          social impact problems. I am always open to discussing new projects, creative ideas, 
+          or opportunities to be part of your vision.
+        </p>
+        <div className="social-links">
+          {SOCIAL.map((s) => (
+            <motion.a
+              whileHover={{ scale: 1.05, x: 5 }}
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+            >
+              <span aria-hidden="true">
+                <s.Icon />
+              </span>
+              {s.label}
+              <span className="arr" aria-hidden="true">
+                <FaArrowRight />
+              </span>
+            </motion.a>
+          ))}
         </div>
-
-        <form className="contact-form reveal d2" onSubmit={(e) => e.preventDefault()}>
-          <div className="field">
-            <label htmlFor="name">Name</label>
-            <input id="name" type="text" placeholder="Gio Anthony Callos" />
-          </div>
-          <div className="field">
-            <label htmlFor="email">Email</label>
-            <input id="email" type="email" placeholder="gioanthonycallos@gmail.com" />
-          </div>
-          <div className="field">
-            <label htmlFor="details">Project details</label>
-            <textarea
-              id="details"
-              rows={5}
-              placeholder="Tell me about your idea, timeline, and preferred tech stack..."
-            />
-          </div>
-          <button type="submit" className="submit-btn">
-            Send message <FaArrowRight aria-hidden="true" />
-          </button>
-        </form>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -395,7 +431,7 @@ export function Footer() {
   return (
     <footer>
       <span>
-        <strong>Gio Anthony Callos</strong> © 2025
+        <strong>Gio Anthony Callos</strong> © 2026
       </span>
       <span>All rights reserved.</span>
     </footer>

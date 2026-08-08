@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import {
@@ -9,43 +9,42 @@ import {
   Contact,
   Footer,
 } from './components/Sections.jsx';
-import { ThemeProvider } from './components/ThemeProvider.jsx';
 import { projects as fetchedProjects } from './data/projectsData.auto.js';
 
 function App() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    const els = document.querySelectorAll('.reveal');
-    els.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
-    <ThemeProvider>
-      <div>
-        <Navbar />
-        <main>
-          <Hero />
-          <StatsBand projectCount={fetchedProjects.length} />
-          <Projects projectsData={fetchedProjects} />
-          <Skills />
-          <Achievements />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div>
+      <motion.div
+        style={{
+          scaleX,
+          transformOrigin: '0%',
+          background: 'var(--lime)',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          zIndex: 9999,
+        }}
+      />
+      <Navbar />
+      <main>
+        <Hero />
+        <StatsBand projectCount={fetchedProjects.length} />
+        <Projects projectsData={fetchedProjects} />
+        <Skills />
+        <Achievements />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
